@@ -3,9 +3,9 @@ new_LRMF <- function(
   u, d, v, rank, alpha, subclasses = NULL) {
 
   object <- list(
-    U = U,
+    u = u,
     d = d,
-    V = V,
+    v = v,
     rank = rank,
     alpha =  alpha
   )
