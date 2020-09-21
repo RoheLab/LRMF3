@@ -1,0 +1,16 @@
+Package: LRMF3
+Title: Low Rank Matrix Factorization S3 Objects
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Alex",
+           family = "Hayes",
+           role = c("aut", "cre"),
+           email = "alexpghayes@gmail.com",
+           comment = c(ORCID = "0000-0002-4985-5160"))
+Description: Provides an S3 class to represent low rank matrix
+    factorizations, and generic operations for these objects.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
