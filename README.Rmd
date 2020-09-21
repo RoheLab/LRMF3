@@ -1,0 +1,21 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# LRMF3
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+`LRMF3` is a developer facing package desired to provide a standardized representation of low rank matrix factorization objects using the S3 object system.
