@@ -3,11 +3,11 @@
 #' A low rank matrix factorization of a matrix `X` is
 #' parameterized by `X ~= u %*% diag(d) %*% t(v)`.
 #'
-#' @param u The "left singular-ish" vectors.
+#' @param u A *matrix* "left singular-ish" vectors.
 #'
-#' @param d The "singular-ish" values.
+#' @param d A *vector* of "singular-ish" values.
 #'
-#' @param v The "right singular-ish" vectors.
+#' @param v A *matrix* of "right singular-ish" vectors.
 #'
 #' @param subclasses A character vector of subclasses.
 #'   Optional, defaults to `NULL`.
@@ -51,7 +51,7 @@ new_mf <- function(u, d, v, rank, subclasses = NULL, ...) {
     ...
   )
 
-  class(object) <- c(subclasses, "LRMF")
+  class(object) <- c(subclasses, "svd_like", "LRMF")
   object
 }
 
@@ -88,7 +88,7 @@ validate_mf <- function(mf) {
 }
 
 #' @export
-print.LRMF <- function(x, ...) {
+print.svd_like <- function(x, ...) {
   cat("Low Rank Matrix Factorization\n")
   cat("-----------------------------\n\n")
 
@@ -101,14 +101,6 @@ print.LRMF <- function(x, ...) {
   cat(glue("d[rank]: {x$d[x$rank]}"), sep = "\n\n")
 
   cat("Components\n\n")
-
-  dim_and_class <- function(x) {
-    if (is.vector(x))
-      paste0(length(x), "      [", class(x)[1], "]")
-    else
-      # is a matrix
-      paste0(nrow(x), " x ", ncol(x), " [", class(x)[1], "]")
-  }
 
   cat("u:", dim_and_class(x$u), "\n")
   cat("d:", dim_and_class(x$d), "\n")
