@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Coerce an object to LRMF class — as_svd_like • LRMF3</title>
+<title>Create a SVD-like low rank matrix factorization object — svd_like • LRMF3</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="Coerce an object to LRMF class — as_svd_like" />
-<meta property="og:description" content="Coerce an object to LRMF class" />
+<meta property="og:title" content="Create a SVD-like low rank matrix factorization object — svd_like" />
+<meta property="og:description" content="A low rank matrix factorization of a matrix X is
+parameterized by X ~= u %*% diag(d) %*% t(v). The
+object is &quot;svd-like&quot; because the middle matrix in
+the decomposition must be strictly diagonal." />
 
 
 
@@ -108,36 +111,81 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Coerce an object to LRMF class</h1>
+    <h1>Create a SVD-like low rank matrix factorization object</h1>
     <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/object-svd-like.R'><code>R/object-svd-like.R</code></a></small>
-    <div class="hidden name"><code>mf.Rd</code></div>
+    <div class="hidden name"><code>svd_like.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Coerce an object to LRMF class</p>
+    <p>A low rank matrix factorization of a matrix <code>X</code> is
+parameterized by <code>X ~= u %*% diag(d) %*% t(v)</code>. The
+object is "svd-like" because the middle matrix in
+the decomposition must be strictly diagonal.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_svd_like</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>svd_like</span>(<span class='no'>u</span>, <span class='no'>d</span>, <span class='no'>v</span>, <span class='kw'>subclasses</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'><a href='mf.html'>as_svd_like</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Object to coerce</p></td>
+      <th>u</th>
+      <td><p>A <em>matrix</em> "left singular-ish" vectors.</p></td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td><p>A <em>vector</em> of "singular-ish" values.</p></td>
+    </tr>
+    <tr>
+      <th>v</th>
+      <td><p>A <em>matrix</em> of "right singular-ish" vectors.</p></td>
+    </tr>
+    <tr>
+      <th>subclasses</th>
+      <td><p>A character vector of subclasses.
+Optional, defaults to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Ignored.</p></td>
+      <td><p>Optional additional items to pass to the constructor.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/svd.html'>svd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>trees</span>))
 
-
-
+<span class='co'># using the constructor directly</span>
+<span class='fu'>svd_like</span>(<span class='no'>s</span>$<span class='no'>u</span>, <span class='no'>s</span>$<span class='no'>d</span>, <span class='no'>s</span>$<span class='no'>v</span>)</div><div class='output co'>#&gt; Low Rank Matrix Factorization
+#&gt; -----------------------------
+#&gt; 
+#&gt; Rank: 3
+#&gt; Rows: 31
+#&gt; Cols: 3
+#&gt; d[rank]: 5.90691893513068
+#&gt; Components
+#&gt; 
+#&gt; u: 31 x 3 [matrix] 
+#&gt; d: 3      [numeric] 
+#&gt; v: 3 x 3 [matrix] </div><div class='input'>
+<span class='co'># coercing svd-like lists</span>
+<span class='fu'><a href='mf.html'>as_svd_like</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; Low Rank Matrix Factorization
+#&gt; -----------------------------
+#&gt; 
+#&gt; Rank: 3
+#&gt; Rows: 31
+#&gt; Cols: 3
+#&gt; d[rank]: 5.90691893513068
+#&gt; Components
+#&gt; 
+#&gt; u: 31 x 3 [matrix] 
+#&gt; d: 3      [numeric] 
+#&gt; v: 3 x 3 [matrix] </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

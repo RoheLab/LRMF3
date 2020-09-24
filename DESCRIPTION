@@ -13,14 +13,17 @@ License: MIT + file LICENSE
 URL: https://github.com/RoheLab/LRMF3
 BugReports: https://github.com/RoheLab/LRMF3/issues
 Depends: 
+    R (>= 3.1),
     Matrix
-Imports: 
+Imports:
     glue,
-    Rcpp
+    Rcpp,
+    stats,
+    methods
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9000
 LinkingTo: 
     Rcpp,
     RcppArmadillo

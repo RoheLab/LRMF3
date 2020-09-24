@@ -11,6 +11,11 @@
 representation of low rank matrix factorization objects using the S3
 object system.
 
+# Conventions
+
+  - `mf` refers to SVD like matrix factorizations
+  - `fa` refers to FA like matrix factorizations
+
 # Related work
 
 <https://bradleyboehmke.github.io/HOML/GLRM.html>

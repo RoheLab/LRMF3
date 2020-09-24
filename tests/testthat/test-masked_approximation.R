@@ -1,9 +1,12 @@
-context("masked approximation")
+library(testthat)
+
+skip_if_not_installed("Matrix")
+skip_if_not_installed("RSpectra")
+
+library(Matrix)
+library(RSpectra)
 
 test_that("masked_approximation", {
-
-  library(Matrix)
-  library(RSpectra)
 
   set.seed(27)
 

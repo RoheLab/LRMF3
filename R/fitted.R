@@ -1,25 +1,27 @@
+# methods in this file are largely experimental at the moment,
+# although fastadi does depend on masked_approximation()
+
 #' TODO
 #'
 #' @param object TODO
-#' @param mask TODO
 #' @param ... TODO
+#' @param X TODO
 #'
-#' @return
+#' @return TODO
 #' @export
 #'
 #' @examples
 #'
 #' X <- as.matrix(trees)
-#' tree_mf <- as_mf(svd(X))
+#' tree_mf <- as_svd_like(svd(X))
 #'
 #' predict(tree_mf)
 #' fitted(tree_mf)
 #' resid(tree_mf, X)
 #'
-#'
 #' masked_approximation(tree_mf, X)
 #'
-predict.LRMF <- function(object, X = NULL, ...) {
+predict.svd_like <- function(object, X = NULL, ...) {
 
   if (is.null(X)) {
     warn_on_large_reconstruction(object)
@@ -31,18 +33,27 @@ predict.LRMF <- function(object, X = NULL, ...) {
 }
 
 #' @export
-#' @rdname predict.LRMF
-residuals.LRMF <- function(object, X, ...) {
-  predict(object, X) - X
+#' @rdname predict.svd_like
+residuals.svd_like <- function(object, X, ...) {
+  stats::predict(object, X) - X
 }
 
 #' @export
-#' @rdname predict.LRMF
-fitted.LRMF <- predict.LRMF
+#' @rdname predict.svd_like
+fitted.svd_like <- predict.svd_like
 
+#' TODO
+#'
+#' TODO: this needs to become a generic so it
+#' can also work for factor analysis objects
+#'
+#' @param object
+#'
+#' @param mask
+#'
 #' @export
 masked_approximation <- function(object, mask) {
-  mask <- as(mask, "TsparseMatrix")
+  mask <- methods::as(mask, "TsparseMatrix")
   masked_approximation_impl(object$u, object$d, object$v, mask@i, mask@j)
 }
 

@@ -1,7 +1,9 @@
-#' Create a low rank matrix factorization object
+#' Create a SVD-like low rank matrix factorization object
 #'
 #' A low rank matrix factorization of a matrix `X` is
-#' parameterized by `X ~= u %*% diag(d) %*% t(v)`.
+#' parameterized by `X ~= u %*% diag(d) %*% t(v)`. The
+#' object is "svd-like" because the middle matrix in
+#' the decomposition must be strictly diagonal.
 #'
 #' @param u A *matrix* "left singular-ish" vectors.
 #'
@@ -19,15 +21,15 @@
 #' s <- svd(as.matrix(trees))
 #'
 #' # using the constructor directly
-#' mf(s$u, s$d, s$v)
+#' svd_like(s$u, s$d, s$v)
 #'
 #' # coercing svd-like lists
-#' as_mf(s)
+#' as_svd_like(s)
 #'
 #' @export
-mf <- function(u, d, v, subclasses = NULL, ...) {
+svd_like <- function(u, d, v, subclasses = NULL, ...) {
 
-  mf <- new_mf(
+  mf <- new_svd_like(
     u = u,
     d = d,
     v = v,
@@ -36,14 +38,12 @@ mf <- function(u, d, v, subclasses = NULL, ...) {
     ...
   )
 
-  validate_mf(mf)
+  validate_svd_like(mf)
 }
 
+new_svd_like <- function(u, d, v, rank, subclasses = NULL, ...) {
 
-#' @export
-new_mf <- function(u, d, v, rank, subclasses = NULL, ...) {
-
-  object <- list(
+  mf <- list(
     u = u,
     d = d,
     v = v,
@@ -51,24 +51,24 @@ new_mf <- function(u, d, v, rank, subclasses = NULL, ...) {
     ...
   )
 
-  class(object) <- c(subclasses, "svd_like", "LRMF")
-  object
+  class(mf) <- c(subclasses, "svd_like", "LRMF")
+  mf
 }
 
-validate_mf <- function(mf) {
+validate_svd_like <- function(mf) {
 
   ### object type validation
 
-  if (!(inherits(mf$u, "matrix") || inherits(mf$u, "Matrix")))
-    stop("`u` must be a matrix or Matrix object.", call. = FALSE)
+  if (!(inherits(mf$u, "matrix")))
+    stop("`u` must be a matrix object.", call. = FALSE)
 
   # d needs to be a numeric vector
 
   if (!is.numeric(mf$d) || !is.vector(mf$d))
     stop("`d` must be a numeric vector.", call. = FALSE)
 
-  if (!(inherits(mf$v, "matrix") || inherits(mf$v, "Matrix")))
-    stop("`v` must be a matrix or Matrix object.", call. = FALSE)
+  if (!(inherits(mf$v, "matrix")))
+    stop("`v` must be a matrix object.", call. = FALSE)
 
   if (!is.integer(mf$rank))
     stop("`rank` must be an integer.", call. = FALSE)
@@ -87,6 +87,33 @@ validate_mf <- function(mf) {
   mf
 }
 
+#' Coerce an object to LRMF class
+#'
+#' @param x Object to coerce
+#' @param ... Ignored.
+#'
+#' @return
+#' @export
+#'
+#' @rdname mf
+as_svd_like <- function(x, ...) {
+  UseMethod("as_svd_like")
+}
+
+#' @rdname svd_like
+#' @export
+as_svd_like.list <- function(x, ...) {
+
+  if (!(all(c("u", "d", "v") %in% names(x))))
+    stop(
+      "Cannot coerce lists without elements `u`, `d`, and `v`.",
+      call. = FALSE
+    )
+
+  svd_like(x$u, x$d, x$v)
+}
+
+#' @method print svd_like
 #' @export
 print.svd_like <- function(x, ...) {
   cat("Low Rank Matrix Factorization\n")

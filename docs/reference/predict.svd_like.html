@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TODO — predict.LRMF • LRMF3</title>
+<title>TODO — predict.svd_like • LRMF3</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="TODO — predict.LRMF" />
+<meta property="og:title" content="TODO — predict.svd_like" />
 <meta property="og:description" content="TODO" />
 
 
@@ -110,20 +110,20 @@
     <div class="page-header">
     <h1>TODO</h1>
     <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/fitted.R'><code>R/fitted.R</code></a></small>
-    <div class="hidden name"><code>predict.LRMF.Rd</code></div>
+    <div class="hidden name"><code>predict.svd_like.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>TODO</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for LRMF</span>
+    <pre class="usage"><span class='co'># S3 method for svd_like</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>object</span>, <span class='kw'>X</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for LRMF</span>
+<span class='co'># S3 method for svd_like</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>residuals</a></span>(<span class='no'>object</span>, <span class='no'>X</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for LRMF</span>
+<span class='co'># S3 method for svd_like</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span>(<span class='no'>object</span>, <span class='kw'>X</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -134,25 +134,23 @@
       <td><p>TODO</p></td>
     </tr>
     <tr>
-      <th>...</th>
+      <th>X</th>
       <td><p>TODO</p></td>
     </tr>
     <tr>
-      <th>mask</th>
+      <th>...</th>
       <td><p>TODO</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>TODO</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>trees</span>)
-<span class='no'>tree_mf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mf.html'>as_mf</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/svd.html'>svd</a></span>(<span class='no'>X</span>))
+<span class='no'>tree_mf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mf.html'>as_svd_like</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/svd.html'>svd</a></span>(<span class='no'>X</span>))
 
 <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>tree_mf</span>)</div><div class='output co'>#&gt;       [,1] [,2] [,3]
 #&gt;  [1,]  8.3   70 10.3
@@ -249,8 +247,7 @@
 #&gt; [29,]  3.552714e-15 -1.421085e-14  0.000000e+00
 #&gt; [30,]  3.552714e-15 -1.421085e-14 -7.105427e-15
 #&gt; [31,]  3.552714e-15 -1.421085e-14  0.000000e+00</div><div class='input'>
-
-<span class='fu'>masked_approximation</span>(<span class='no'>tree_mf</span>, <span class='no'>X</span>)</div><div class='output co'>#&gt; 31 x 3 sparse Matrix of class "dgCMatrix"
+<span class='fu'><a href='masked_approximation.html'>masked_approximation</a></span>(<span class='no'>tree_mf</span>, <span class='no'>X</span>)</div><div class='output co'>#&gt; 31 x 3 sparse Matrix of class "dgCMatrix"
 #&gt;                   
 #&gt;  [1,]  8.3 70 10.3
 #&gt;  [2,]  8.6 65 10.3

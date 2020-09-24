@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Coerce an object to LRMF class — as_svd_like • LRMF3</title>
+<title>Create a Factor Analysis-like low rank matrix factorization object — fa_like • LRMF3</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,12 @@
 
 
 
-<meta property="og:title" content="Coerce an object to LRMF class — as_svd_like" />
-<meta property="og:description" content="Coerce an object to LRMF class" />
+<meta property="og:title" content="Create a Factor Analysis-like low rank matrix factorization object — fa_like" />
+<meta property="og:description" content="A low rank matrix factorization of a matrix X is
+parameterized by X ~= X %*% B %*% t(Y). The
+object is &quot;factor analysis-like&quot; because the middle
+matrix in the decomposition is arbitrary rather than
+diagonal." />
 
 
 
@@ -108,36 +112,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Coerce an object to LRMF class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/object-svd-like.R'><code>R/object-svd-like.R</code></a></small>
-    <div class="hidden name"><code>mf.Rd</code></div>
+    <h1>Create a Factor Analysis-like low rank matrix factorization object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/object-fa-like.R'><code>R/object-fa-like.R</code></a></small>
+    <div class="hidden name"><code>fa_like.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Coerce an object to LRMF class</p>
+    <p>A low rank matrix factorization of a matrix <code>X</code> is
+parameterized by <code>X ~= X %*% B %*% t(Y)</code>. The
+object is "factor analysis-like" because the middle
+matrix in the decomposition is arbitrary rather than
+diagonal.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_svd_like</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>fa_like</span>(<span class='no'>Z</span>, <span class='no'>B</span>, <span class='no'>Y</span>, <span class='kw'>subclasses</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Object to coerce</p></td>
+      <th>Z</th>
+      <td><p>A <em>matrix</em> of embeddings for each observation.</p></td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td><p>A mixing <em>matrix</em> describing how observation embeddings
+and topics interact. Does not have to be diagonal!</p></td>
+    </tr>
+    <tr>
+      <th>Y</th>
+      <td><p>A <em>matrix</em> describing the compositions of various topics
+or factors.</p></td>
+    </tr>
+    <tr>
+      <th>subclasses</th>
+      <td><p>A character vector of subclasses.
+Optional, defaults to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Ignored.</p></td>
+      <td><p>Optional additional items to pass to the constructor.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/svd.html'>svd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>trees</span>))
 
-
-
+<span class='fu'>fa_like</span>(<span class='no'>s</span>$<span class='no'>u</span>, <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='no'>s</span>$<span class='no'>d</span>), <span class='no'>s</span>$<span class='no'>v</span>)</div><div class='output co'>#&gt; Factor Analysis-Like Matrix Factorization
+#&gt; ---------------------------------------
+#&gt; 
+#&gt; Rank: 3
+#&gt; Rows: 31
+#&gt; Cols: 3
+#&gt; Components
+#&gt; 
+#&gt; Z: 31 x 3 [matrix] 
+#&gt; B: 3 x 3 [matrix] 
+#&gt; Y: 3 x 3 [matrix] </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

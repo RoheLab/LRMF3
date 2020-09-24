@@ -1,7 +1,10 @@
-#' Create a low rank matrix factorization object
+#' Create a Factor Analysis-like low rank matrix factorization object
 #'
 #' A low rank matrix factorization of a matrix `X` is
-#' parameterized by `X ~= Z %*% B %*% t(Y)`.
+#' parameterized by `X ~= X %*% B %*% t(Y)`. The
+#' object is "factor analysis-like" because the middle
+#' matrix in the decomposition is arbitrary rather than
+#' diagonal.
 #'
 #' @param Z A *matrix* of embeddings for each observation.
 #'
@@ -18,14 +21,16 @@
 #'
 #' @examples
 #'
-#' # TODO
+#' s <- svd(as.matrix(trees))
+#'
+#' fa_like(s$u, diag(s$d), s$v)
 #'
 #' @export
-fa <- function(Z, B, Y, subclasses = NULL, ...) {
+fa_like <- function(Z, B, Y, subclasses = NULL, ...) {
 
-  all_dims <- c(dims(Z), dims(B), dims(Y))
+  all_dims <- c(dim(Z), dim(B), dim(Y))
 
-  fa <- new_fa(
+  fa <- new_fa_like(
     Z = Z,
     B = B,
     Y = Y,
@@ -34,12 +39,10 @@ fa <- function(Z, B, Y, subclasses = NULL, ...) {
     ...
   )
 
-  validate_fa(fa)
+  validate_fa_like(fa)
 }
 
-
-#' @export
-new_fa <- function(Z, B, Y, rank, subclasses = NULL, ...) {
+new_fa_like <- function(Z, B, Y, rank, subclasses = NULL, ...) {
 
   object <- list(
     Z = Z,
@@ -53,38 +56,37 @@ new_fa <- function(Z, B, Y, rank, subclasses = NULL, ...) {
   object
 }
 
-validate_fa <- function(fa) {
+validate_fa_like <- function(fa) {
 
-  # ### object type validation
-  #
-  # if (!(inherits(fa$u, "matrix") || inherits(fa$u, "Matrix")))
-  #   stop("`u` must be a matrix or Matrix object.", call. = FALSE)
-  #
-  # # d needs to be a numeric vector
-  #
-  # if (!is.numeric(fa$d) || !is.vector(fa$d))
-  #   stop("`d` must be a numeric vector.", call. = FALSE)
-  #
-  # if (!(inherits(fa$v, "matrix") || inherits(fa$v, "Matrix")))
-  #   stop("`v` must be a matrix or Matrix object.", call. = FALSE)
-  #
-  # if (!is.integer(fa$rank))
-  #   stop("`rank` must be an integer.", call. = FALSE)
-  #
-  # ### dimension validation
-  #
-  # if (ncol(fa$u) != length(fa$d))
-  #   stop("Dimensions of `u` and `d` must match.", call. = FALSE)
-  #
-  # if (length(fa$d) != ncol(fa$v))
-  #   stop("Dimensions of `d` and `v` must match.", call. = FALSE)
-  #
-  # if (length(fa$d) != fa$rank)
-  #   stop("`rank` does not match `u`, `d`, and `v`.", call. = FALSE)
+  ### object type validation
+
+  if (!(inherits(fa$Z, "matrix")))
+    stop("`Z` must be a matrix object.", call. = FALSE)
+
+  if (!(inherits(fa$B, "matrix")))
+    stop("`B` must be a matrix object.", call. = FALSE)
+
+  if (!(inherits(fa$Y, "matrix")))
+    stop("`Y` must be a matrix object.", call. = FALSE)
+
+  ### dimension validation
+
+  if (ncol(fa$Z) != nrow(fa$B))
+    stop("Dimensions of `Z` and `B` must match.", call. = FALSE)
+
+  if (ncol(fa$B) != ncol(fa$Y))
+    stop("Dimensions of `B` and `Y` must match.", call. = FALSE)
+
+  if (fa$rank != min(c(dim(fa$Z), dim(fa$B), dim(fa$Y))))
+    stop(
+      "`rank` must match smallest dimension of `Z`, `B`, and `Y`.",
+      call. = FALSE
+    )
 
   fa
 }
 
+#' @method print fa_like
 #' @export
 print.fa_like <- function(x, ...) {
   cat("Factor Analysis-Like Matrix Factorization\n")

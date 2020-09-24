@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Coerce an object to LRMF class — as_svd_like • LRMF3</title>
+<title>Make factors columnwise skew positive — make_skew_positive • LRMF3</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,12 @@
 
 
 
-<meta property="og:title" content="Coerce an object to LRMF class — as_svd_like" />
-<meta property="og:description" content="Coerce an object to LRMF class" />
+<meta property="og:title" content="Make factors columnwise skew positive — make_skew_positive" />
+<meta property="og:description" content="Given a factor analysis like object, flip
+signs so that columns of Z and Y are
+skew positive. Note that this also causes
+corresponding sign flips in B. This
+helps with interpretability of factors." />
 
 
 
@@ -108,35 +112,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Coerce an object to LRMF class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/object-svd-like.R'><code>R/object-svd-like.R</code></a></small>
-    <div class="hidden name"><code>mf.Rd</code></div>
+    <h1>Make factors columnwise skew positive</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>make_skew_positive.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Coerce an object to LRMF class</p>
+    <p>Given a factor analysis like object, flip
+signs so that columns of <code>Z</code> and <code>Y</code> are
+skew positive. Note that this also causes
+corresponding sign flips in <code>B</code>. This
+helps with interpretability of factors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_svd_like</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>make_skew_positive</span>(<span class='no'>fa</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Object to coerce</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Ignored.</p></td>
+      <th>fa</th>
+      <td><p>A <code><a href='fa_like.html'>fa_like()</a></code> object.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>A new <code><a href='fa_like.html'>fa_like()</a></code> object where the columns
+of <code>Z</code> and <code>Y</code> has positive skew, that is otherwise
+equivalent to the original object.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
