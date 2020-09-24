@@ -47,9 +47,9 @@ fitted.svd_like <- predict.svd_like
 #' TODO: this needs to become a generic so it
 #' can also work for factor analysis objects
 #'
-#' @param object
+#' @param object TODO
 #'
-#' @param mask
+#' @param mask TODO
 #'
 #' @export
 masked_approximation <- function(object, mask) {

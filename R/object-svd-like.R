@@ -92,15 +92,13 @@ validate_svd_like <- function(mf) {
 #' @param x Object to coerce
 #' @param ... Ignored.
 #'
-#' @return
+#' @return Object as [svd_like()] object.
 #' @export
-#'
-#' @rdname mf
 as_svd_like <- function(x, ...) {
   UseMethod("as_svd_like")
 }
 
-#' @rdname svd_like
+#' @rdname as_svd_like
 #' @export
 as_svd_like.list <- function(x, ...) {
 

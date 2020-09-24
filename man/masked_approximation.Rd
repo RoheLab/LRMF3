@@ -7,9 +7,9 @@
 masked_approximation(object, mask)
 }
 \arguments{
-\item{object}{}
+\item{object}{TODO}
 
-\item{mask}{}
+\item{mask}{TODO}
 }
 \description{
 TODO: this needs to become a generic so it

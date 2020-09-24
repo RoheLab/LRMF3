@@ -1,6 +1,6 @@
 Package: LRMF3
 Title: Low Rank Matrix Factorization S3 Objects
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Alex",
            family = "Hayes",
@@ -13,19 +13,20 @@ License: MIT + file LICENSE
 URL: https://github.com/RoheLab/LRMF3
 BugReports: https://github.com/RoheLab/LRMF3/issues
 Depends: 
-    R (>= 3.1),
-    Matrix
+    Matrix,
+    R (>= 3.1)
 Imports:
     glue,
+    methods,
     Rcpp,
-    stats,
-    methods
+    stats
+Suggests: 
+    RSpectra,
+    testthat
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1.9000
-LinkingTo: 
-    Rcpp,
-    RcppArmadillo
-Suggests: 
-    testthat

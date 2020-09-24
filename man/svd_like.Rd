@@ -2,12 +2,9 @@
 % Please edit documentation in R/object-svd-like.R
 \name{svd_like}
 \alias{svd_like}
-\alias{as_svd_like.list}
 \title{Create a SVD-like low rank matrix factorization object}
 \usage{
 svd_like(u, d, v, subclasses = NULL, ...)
-
-\method{as_svd_like}{list}(x, ...)
 }
 \arguments{
 \item{u}{A \emph{matrix} "left singular-ish" vectors.}

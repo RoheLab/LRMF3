@@ -2,9 +2,12 @@
 % Please edit documentation in R/object-svd-like.R
 \name{as_svd_like}
 \alias{as_svd_like}
+\alias{as_svd_like.list}
 \title{Coerce an object to LRMF class}
 \usage{
 as_svd_like(x, ...)
+
+\method{as_svd_like}{list}(x, ...)
 }
 \arguments{
 \item{x}{Object to coerce}
@@ -12,7 +15,7 @@ as_svd_like(x, ...)
 \item{...}{Ignored.}
 }
 \value{
-
+Object as \code{\link[=svd_like]{svd_like()}} object.
 }
 \description{
 Coerce an object to LRMF class
