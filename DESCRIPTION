@@ -21,6 +21,7 @@ Imports:
     Rcpp,
     stats
 Suggests: 
+    covr,
     RSpectra,
     testthat
 LinkingTo: 
