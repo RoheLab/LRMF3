@@ -55,6 +55,7 @@ new_svd_like <- function(u, d, v, rank, subclasses = NULL, ...) {
   mf
 }
 
+#' @export
 validate_svd_like <- function(mf) {
 
   ### object type validation
