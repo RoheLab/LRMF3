@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • LRMF3</title>
+<title>Expand an SVD only at observed values of a sparse matrix — masked_approximation_impl • LRMF3</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Expand an SVD only at observed values of a sparse matrix — masked_approximation_impl" />
+<meta property="og:description" content="TODO: describe what it looks like for dimensions to match up between
+s and mask. See vignette(&quot;sparse-computations&quot;) for mathematical
+details." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,90 +108,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Expand an SVD only at observed values of a sparse matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RoheLab/LRMF3/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
+    <div class="hidden name"><code>masked_approximation_impl.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>TODO: describe what it looks like for dimensions to match up between
+<code>s</code> and <code>mask</code>. See <code>vignette("sparse-computations")</code> for mathematical
+details.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>masked_approximation_impl</span><span class='op'>(</span><span class='va'>U</span>, <span class='va'>V</span>, <span class='va'>row</span>, <span class='va'>col</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="as_fa_like.html">as_fa_like()</a></code> </p>
-        </td>
-        <td><p>Coerce an object to a factor analysis like factorization</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_svd_like.html">as_svd_like()</a></code> </p>
-        </td>
-        <td><p>Coerce an object to LRMF class</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dim_and_class.html">dim_and_class()</a></code> </p>
-        </td>
-        <td><p>Description array size and type</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fa_like.html">fa_like()</a></code> </p>
-        </td>
-        <td><p>Create a Factor Analysis-like low rank matrix factorization object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="masked_approximation_impl.html">masked_approximation_impl()</a></code> </p>
-        </td>
-        <td><p>Expand an SVD only at observed values of a sparse matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ml100k.html">ml100k</a></code> </p>
-        </td>
-        <td><p>MovieLens 100K dataset</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.fa_like.html">predict(<i>&lt;fa_like&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Title</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.svd_like.html">predict(<i>&lt;svd_like&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>TODO</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="svd_like.html">svd_like()</a></code> </p>
-        </td>
-        <td><p>Create a SVD-like low rank matrix factorization object</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>U</th>
+      <td><p>Low-rank matrix of left singular-ish vectors.</p></td>
+    </tr>
+    <tr>
+      <th>V</th>
+      <td><p>Low-rank matrix of right singular-ish vectors.</p></td>
+    </tr>
+    <tr>
+      <th>row</th>
+      <td><p>Zero-based row indices of observed elements.</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>Zero-based col indices of observed elements.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A sparse matrix representing the low-rank reconstruction
+from <code>U</code>, <code>d</code> and <code>V</code>, only at the index pairs indicated by
+<code>row</code> and <code>col</code>.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The idea is to populate <code>U</code>, <code>d</code> and <code>V</code> with using the
+elements of an SVD-like list. You can generate <code>row</code> and <code>col</code>
+most easily from a sparse masking Matrix (Matrix package),
+coercing to triplet format, and extracting <code>mask@i</code> for <code>row</code>
+and <code>mask@j</code> for column.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
