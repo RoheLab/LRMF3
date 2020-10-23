@@ -86,6 +86,30 @@ validate_fa_like <- function(fa) {
   fa
 }
 
+#' Coerce an object to a factor analysis like factorization
+#'
+#' @param x Object to coerce
+#' @param ... Ignored.
+#'
+#' @return Object as [svd_like()] object.
+#' @export
+as_fa_like <- function(x, ...) {
+  UseMethod("as_fa_like")
+}
+
+#' @rdname as_fa_like
+#' @export
+as_fa_like.list <- function(x, ...) {
+
+  if (!(all(c("u", "d", "v") %in% names(x))))
+    stop(
+      "Cannot coerce lists without elements `u`, `d`, and `v`.",
+      call. = FALSE
+    )
+
+  fa_like(x$u, diag(x$d), x$v)
+}
+
 #' @method print fa_like
 #' @export
 print.fa_like <- function(x, ...) {

@@ -7,23 +7,22 @@
 using namespace Rcpp;
 
 // masked_approximation_impl
-arma::sp_mat masked_approximation_impl(const arma::mat& U, const arma::rowvec& d, const arma::mat& V, const arma::vec& row, const arma::vec& col);
-RcppExport SEXP _LRMF3_masked_approximation_impl(SEXP USEXP, SEXP dSEXP, SEXP VSEXP, SEXP rowSEXP, SEXP colSEXP) {
+arma::sp_mat masked_approximation_impl(const arma::mat& U, const arma::mat& V, const arma::vec& row, const arma::vec& col);
+RcppExport SEXP _LRMF3_masked_approximation_impl(SEXP USEXP, SEXP VSEXP, SEXP rowSEXP, SEXP colSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type U(USEXP);
-    Rcpp::traits::input_parameter< const arma::rowvec& >::type d(dSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type V(VSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type row(rowSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type col(colSEXP);
-    rcpp_result_gen = Rcpp::wrap(masked_approximation_impl(U, d, V, row, col));
+    rcpp_result_gen = Rcpp::wrap(masked_approximation_impl(U, V, row, col));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_LRMF3_masked_approximation_impl", (DL_FUNC) &_LRMF3_masked_approximation_impl, 5},
+    {"_LRMF3_masked_approximation_impl", (DL_FUNC) &_LRMF3_masked_approximation_impl, 4},
     {NULL, NULL, 0}
 };
 

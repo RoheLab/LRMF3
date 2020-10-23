@@ -6,7 +6,7 @@ skip_if_not_installed("RSpectra")
 library(Matrix)
 library(RSpectra)
 
-test_that("masked_approximation", {
+test_that("masked_approximation_impl (small sparse matrix)", {
 
   set.seed(27)
 
@@ -24,11 +24,52 @@ test_that("masked_approximation", {
 
   A_triplet <- as(A, "dgTMatrix")
 
-  impl_result <- masked_approximation_impl(s$u, s$d, s$v,
+  impl_result <- masked_approximation_impl(s$u, tcrossprod(s$v, diag(s$d)),
                                            A_triplet@i, A_triplet@j)
 
-  wrapped_result <- masked_approximation(s, A)
+  mf <- as_svd_like(s)
+  predict_svd_like_result <- predict(mf, A)
+
+  fa <- as_fa_like(s)
+  predict_fa_like_result <- predict(fa, A)
 
   expect_equal(impl_result, expected)
-  expect_equal(wrapped_result, expected)
+  expect_equal(predict_svd_like_result, expected)
+  expect_equal(predict_fa_like_result, expected)
+})
+
+test_that("masked_approximation_impl (4 billion+ element sparse matrix)", {
+
+  # need to check that this will work for sparse matrices with more
+  # elements than 32-bit integers, which will happen often for
+  # large sparse social networks
+
+  # this is related to https://github.com/RcppCore/RcppArmadillo/pull/90
+  # and https://stackoverflow.com/questions/40592054/large-matrices-in-rcpparmadillo-via-the-arma-64bit-word-define and came up during the
+  # web of science applied work
+
+  set.seed(27)
+
+  n <- sqrt(.Machine$integer.max) + 1000
+
+  # matrix to build an SVD from
+  A <- rsparsematrix(n, n, nnz = 2000)
+
+  # make sure the
+  stopifnot(prod(dim(A)) > .Machine$integer.max)
+
+  s <- svds(A, 5)
+
+  A_triplet <- as(A, "dgTMatrix")
+
+  expect_silent(
+    masked_approximation_impl(
+      s$u, tcrossprod(s$v, diag(s$d)),
+      A_triplet@i, A_triplet@j
+    )
+  )
+
+  expect_silent(
+    predict(as_svd_like(s), A)
+  )
 })
