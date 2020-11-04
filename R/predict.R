@@ -53,7 +53,8 @@ predict.fa_like <- function(object, X = NULL, ...) {
   }
 
   mask <- methods::as(X, "TsparseMatrix")
-  masked_approximation_impl(object$Z, YBt, mask@i, mask@j)
+
+  masked_approximation_impl(as.matrix(object$Z), as.matrix(YBt), mask@i, mask@j)
 }
 
 #' @export
