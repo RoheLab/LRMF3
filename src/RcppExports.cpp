@@ -6,17 +6,16 @@
 
 using namespace Rcpp;
 
-// colSums_svd_like_impl
-arma::vec colSums_svd_like_impl(const arma::mat& U, const arma::rowvec& d, const arma::mat& V, const int num_threads);
-RcppExport SEXP _LRMF3_colSums_svd_like_impl(SEXP USEXP, SEXP dSEXP, SEXP VSEXP, SEXP num_threadsSEXP) {
+// colSums_svd_like_impl_cpp
+arma::vec colSums_svd_like_impl_cpp(const arma::mat& U, const arma::rowvec& d, const arma::mat& V);
+RcppExport SEXP _LRMF3_colSums_svd_like_impl_cpp(SEXP USEXP, SEXP dSEXP, SEXP VSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type U(USEXP);
     Rcpp::traits::input_parameter< const arma::rowvec& >::type d(dSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type V(VSEXP);
-    Rcpp::traits::input_parameter< const int >::type num_threads(num_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(colSums_svd_like_impl(U, d, V, num_threads));
+    rcpp_result_gen = Rcpp::wrap(colSums_svd_like_impl_cpp(U, d, V));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -34,25 +33,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rowSums_svd_like_impl
-arma::vec rowSums_svd_like_impl(const arma::mat& U, const arma::rowvec& d, const arma::mat& V, const int num_threads);
-RcppExport SEXP _LRMF3_rowSums_svd_like_impl(SEXP USEXP, SEXP dSEXP, SEXP VSEXP, SEXP num_threadsSEXP) {
+// rowSums_svd_like_impl_cpp
+arma::vec rowSums_svd_like_impl_cpp(const arma::mat& U, const arma::rowvec& d, const arma::mat& V);
+RcppExport SEXP _LRMF3_rowSums_svd_like_impl_cpp(SEXP USEXP, SEXP dSEXP, SEXP VSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type U(USEXP);
     Rcpp::traits::input_parameter< const arma::rowvec& >::type d(dSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type V(VSEXP);
-    Rcpp::traits::input_parameter< const int >::type num_threads(num_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rowSums_svd_like_impl(U, d, V, num_threads));
+    rcpp_result_gen = Rcpp::wrap(rowSums_svd_like_impl_cpp(U, d, V));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_LRMF3_colSums_svd_like_impl", (DL_FUNC) &_LRMF3_colSums_svd_like_impl, 4},
+    {"_LRMF3_colSums_svd_like_impl_cpp", (DL_FUNC) &_LRMF3_colSums_svd_like_impl_cpp, 3},
     {"_LRMF3_masked_approximation_impl", (DL_FUNC) &_LRMF3_masked_approximation_impl, 4},
-    {"_LRMF3_rowSums_svd_like_impl", (DL_FUNC) &_LRMF3_rowSums_svd_like_impl, 4},
+    {"_LRMF3_rowSums_svd_like_impl_cpp", (DL_FUNC) &_LRMF3_rowSums_svd_like_impl_cpp, 3},
     {NULL, NULL, 0}
 };
 
