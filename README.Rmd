@@ -30,15 +30,3 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("RoheLab/fastadi")
 ```
-
-## Notes to self
-
-*Conventions*
-
-- `mf` refers to SVD like matrix factorizations
-- `fa` refers to FA like matrix factorizations
-
-*Related work*
-
-- https://bradleyboehmke.github.io/HOML/GLRM.html
-- https://github.com/rexyai/rsparse/blob/master/R/MatrixFactorizationRecommender.R
