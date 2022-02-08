@@ -9,6 +9,8 @@
 coverage](https://codecov.io/gh/RoheLab/LRMF3/branch/master/graph/badge.svg)](https://codecov.io/gh/RoheLab/LRMF3?branch=master)
 [![R build
 status](https://github.com/RoheLab/LRMF3/workflows/R-CMD-check/badge.svg)](https://github.com/RoheLab/LRMF3/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/LRMF3)](https://CRAN.R-project.org/package=LRMF3)
 <!-- badges: end -->
 
 `LRMF3` is a developer facing package designed to provide a standardized
@@ -22,5 +24,5 @@ You can install the development version from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("RoheLab/fastadi")
+devtools::install_github("RoheLab/LRMF3")
 ```
