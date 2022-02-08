@@ -7,8 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "alexpghayes@gmail.com",
            comment = c(ORCID = "0000-0002-4985-5160"))
-Description: Provides an S3 class to represent low rank matrix
-    factorizations, and generic operations for these objects.
+Description: Provides S3 classes to represent low rank matrix
+    decompositions.
 License: MIT + file LICENSE
 URL: https://github.com/RoheLab/LRMF3
 BugReports: https://github.com/RoheLab/LRMF3/issues
@@ -16,9 +16,7 @@ Depends:
     Matrix,
     R (>= 3.1)
 Imports:
-    glue,
-    methods,
-    stats
+    glue
 Suggests: 
     covr,
     testthat

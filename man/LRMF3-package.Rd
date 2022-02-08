@@ -6,7 +6,7 @@
 \alias{LRMF3-package}
 \title{LRMF3: Low Rank Matrix Factorization S3 Objects}
 \description{
-Provides an S3 class to represent low rank matrix factorizations, and generic operations for these objects.
+Provides S3 classes to represent low rank matrix decompositions.
 }
 \seealso{
 Useful links:
