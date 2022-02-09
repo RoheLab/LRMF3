@@ -4,6 +4,10 @@
 # LRMF3
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/RoheLab/LRMF3/workflows/R-CMD-check/badge.svg)](https://github.com/RoheLab/LRMF3/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/RoheLab/LRMF3/branch/main/graph/badge.svg)](https://app.codecov.io/gh/RoheLab/LRMF3?branch=main)
 <!-- badges: end -->
 
 `LRMF3` is a developer facing package designed to provide a standardized
