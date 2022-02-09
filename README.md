@@ -16,6 +16,12 @@ object system.
 
 ## Installation
 
+You can install the released version from CRAN with:
+
+``` r
+install.packages("LRMF3")
+```
+
 You can install the development version from
 [GitHub](https://github.com/) with:
 
