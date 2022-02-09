@@ -8,3 +8,4 @@
 ^data-raw$
 ^codecov\.yml$
 ^\.github$
+^cran-comments\.md$
